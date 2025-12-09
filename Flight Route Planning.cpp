@@ -242,9 +242,13 @@ void menu() {
         case 3:
             cout << "From: ";
             cin >> src;
-            cout << "To: ";
-            cin >> dst;
-            shortestPath(src, dst);
+            for (int i = 0; i < airports.size(); i++) {
+                if (src == airports.at(i)) {
+                    continue;
+                }
+                shortestPath(src, airports.at(i));
+
+            }
             break;
         case 4:
             findHubs();
