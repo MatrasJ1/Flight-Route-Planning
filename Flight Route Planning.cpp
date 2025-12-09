@@ -87,6 +87,7 @@ void shortestPath(const string& src, const string& dst) {
     vector<bool> used(n, false);
     dist[start] = 0;
 
+    // Find airport with smallest distance from previous
     for (int k = 0; k < n; k++) {
         int u = -1;
         for (int i = 0; i < n; i++)
@@ -137,6 +138,7 @@ void findHubs() {
     int n = airports.size();
     vector<int> outDegree(n, 0), inDegree(n, 0);
 
+    //calculate in-degree and out-degree of each airport
     for (int i = 0; i < n; i++)
         for (int j = 0; j < n; j++)
             if (matrix[i][j] < INF && i != j) {
@@ -144,6 +146,7 @@ void findHubs() {
                 inDegree[j]++;
             }
 
+    //calculate max in-degree and max out-degree
     int maxOut = *max_element(outDegree.begin(), outDegree.end());
     int maxIn = *max_element(inDegree.begin(), inDegree.end());
 
@@ -182,6 +185,7 @@ void unreachableFrom(const string& src) {
     while (!stack.empty()) {
         int u = stack.back(); 
         stack.pop_back();
+        //if already visited, continue
         if (visited[u]) {
             continue;
         }
@@ -208,7 +212,7 @@ void unreachableFrom(const string& src) {
 
 // Menu
 void menu() {
-    int choice;
+    int choice = -1;
     string src, dst;
     int distance;
     while(choice != 0){
@@ -262,6 +266,7 @@ void loadDataset() {
     addFlight("DEN", "SLC", 391);
     addFlight("DEN", "LAS", 628);
     addFlight("DEN", "MSP", 680);
+    addFlight("DEN", "MCI", 532);
 
     addFlight("MCI", "ORD", 403);
     addFlight("ORD", "LGA", 733);
@@ -269,6 +274,7 @@ void loadDataset() {
     addFlight("ORD", "BOS", 867);
     addFlight("ORD", "LAS", 1514);
     addFlight("ORD", "MSP", 334);
+    addFlight("ORD", "MCI", 403);
 
     addFlight("MCI", "ATL", 692);
     addFlight("ATL", "LGA", 762);
@@ -290,6 +296,17 @@ void loadDataset() {
     addFlight("DFW", "LAX", 1235);
     addFlight("DFW", "LGA", 1389);
     addFlight("DFW", "IAH", 224);
+
+    addFlight("LGA", "MCI", 1107);
+
+    addFlight("LAX", "LAS", 236);
+
+    addFlight("IAH", "ATL", 689);
+
+    addFlight("MCO", "ORD", 1005);
+
+    addFlight("DFW", "DEN", 641);
+
 }
 
 int main() {
