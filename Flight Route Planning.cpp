@@ -90,10 +90,11 @@ void shortestPath(const string& src, const string& dst) {
     // Find airport with smallest distance from previous
     for (int k = 0; k < n; k++) {
         int u = -1;
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < n; i++) {
             if (!used[i] && (u == -1 || dist[i] < dist[u])) {
                 u = i;
             }
+        }
         //if smallest distance is infinity, all airports are unreachable
         if (dist[u] == INF) {
             break;
